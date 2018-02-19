@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB3EEF2A203A80B800BE4A96 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3EEF29203A80B800BE4A96 /* Extensions.swift */; };
+		FB45B7C7203A07020075E35C /* Cat.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB45B7C6203A07020075E35C /* Cat.swift */; };
+		FB45B7CA203A082F0075E35C /* CatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB45B7C9203A082F0075E35C /* CatViewModel.swift */; };
+		FB45B7CC203A0BEE0075E35C /* CatViewModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB45B7CB203A0BEE0075E35C /* CatViewModelController.swift */; };
+		FB9B16BE20030FDE00777F4D /* MeowCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9B16BD20030FDE00777F4D /* MeowCollectionViewCell.swift */; };
 		FB9DEBB620030BFE000D2172 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9DEBB520030BFE000D2172 /* AppDelegate.swift */; };
 		FB9DEBB820030BFE000D2172 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9DEBB720030BFE000D2172 /* ViewController.swift */; };
 		FB9DEBBB20030BFE000D2172 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB9DEBB920030BFE000D2172 /* Main.storyboard */; };
@@ -34,6 +39,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FB3EEF29203A80B800BE4A96 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		FB45B7C6203A07020075E35C /* Cat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cat.swift; sourceTree = "<group>"; };
+		FB45B7C9203A082F0075E35C /* CatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatViewModel.swift; sourceTree = "<group>"; };
+		FB45B7CB203A0BEE0075E35C /* CatViewModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatViewModelController.swift; sourceTree = "<group>"; };
+		FB9B16BD20030FDE00777F4D /* MeowCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeowCollectionViewCell.swift; sourceTree = "<group>"; };
 		FB9DEBB220030BFE000D2172 /* MeowFest2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeowFest2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB9DEBB520030BFE000D2172 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FB9DEBB720030BFE000D2172 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +84,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FB45B7C8203A070D0075E35C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FB45B7C6203A07020075E35C /* Cat.swift */,
+				FB45B7C9203A082F0075E35C /* CatViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		FB9DEBA920030BFE000D2172 = {
 			isa = PBXGroup;
 			children = (
@@ -98,7 +117,11 @@
 			isa = PBXGroup;
 			children = (
 				FB9DEBB520030BFE000D2172 /* AppDelegate.swift */,
+				FB45B7C8203A070D0075E35C /* Model */,
 				FB9DEBB720030BFE000D2172 /* ViewController.swift */,
+				FB3EEF29203A80B800BE4A96 /* Extensions.swift */,
+				FB45B7CB203A0BEE0075E35C /* CatViewModelController.swift */,
+				FB9B16BD20030FDE00777F4D /* MeowCollectionViewCell.swift */,
 				FB9DEBB920030BFE000D2172 /* Main.storyboard */,
 				FB9DEBBC20030BFE000D2172 /* Assets.xcassets */,
 				FB9DEBBE20030BFE000D2172 /* LaunchScreen.storyboard */,
@@ -259,8 +282,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB45B7C7203A07020075E35C /* Cat.swift in Sources */,
 				FB9DEBB820030BFE000D2172 /* ViewController.swift in Sources */,
+				FB9B16BE20030FDE00777F4D /* MeowCollectionViewCell.swift in Sources */,
+				FB45B7CA203A082F0075E35C /* CatViewModel.swift in Sources */,
 				FB9DEBB620030BFE000D2172 /* AppDelegate.swift in Sources */,
+				FB45B7CC203A0BEE0075E35C /* CatViewModelController.swift in Sources */,
+				FB3EEF2A203A80B800BE4A96 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
