@@ -91,6 +91,26 @@
                                             <outlet property="title" destination="fds-rF-2XI" id="sm6-rH-uBW"/>
                                         </connections>
                                     </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LoadingCell" id="XqY-IG-7Yr" customClass="LoadingViewCell" customModule="MeowFest2" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="286" width="375" height="276"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="276"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="RUE-MF-5cC">
+                                                    <rect key="frame" x="177" y="128" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="RUE-MF-5cC" firstAttribute="centerY" secondItem="XqY-IG-7Yr" secondAttribute="centerY" id="5Uw-PM-c2h"/>
+                                            <constraint firstItem="RUE-MF-5cC" firstAttribute="centerX" secondItem="XqY-IG-7Yr" secondAttribute="centerX" id="WXS-bd-9bb"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="activityIndicator" destination="RUE-MF-5cC" id="7TU-Q2-fVr"/>
+                                        </connections>
+                                    </collectionViewCell>
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="CVr-xB-6hG"/>

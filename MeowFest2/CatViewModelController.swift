@@ -11,8 +11,9 @@ import Foundation
 class CatViewModelController {
     fileprivate var viewModels: [CatViewModel?] = []
     
-    func getImages(_ completionBlock: @escaping (_ success: Bool, _ error: NSError?) -> ()) {
-        let url = NSURL(string: "https://chex-triplebyte.herokuapp.com/api/cats?page=0")
+    func getImages(_ currentPage: Int, _ completionBlock: @escaping (_ success: Bool, _ error: NSError?) -> ()) {
+        let url = NSURL(string: "https://chex-triplebyte.herokuapp.com/api/cats?page=\(currentPage)")
+        print(url)
         let request = NSMutableURLRequest(url: url! as URL)
         let task = URLSession.shared.dataTask(with: request as URLRequest){ data,response,error in
             guard error == nil && data != nil else
@@ -55,6 +56,25 @@ class CatViewModelController {
     func viewModel(at index: Int) -> CatViewModel? {
         guard index >= 0 && index < viewModelsCount else { return nil }
         return viewModels[index]
+    }
+    func fetchMoreItems() {
+        print("fetching more items...")
+        //generating the next page of data
+        let newData = [AnyObject]()
+        let pageSize = 10
+        let currentPage = 0
+        let first = currentPage
+        let last = 10
+        let interval = 1
+        
+        let sequence = stride(from: first, to: last, by: interval)
+        
+        for element in sequence {
+            // do stuff
+            print(element)
+        }
+
+
     }
 }
 
