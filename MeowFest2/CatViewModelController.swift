@@ -28,14 +28,28 @@ class CatViewModelController {
                 if data?.count != 0
                 {
                     if let received = try! JSONSerialization.jsonObject(with: data!, options:.allowFragments) as? [AnyObject] {
-                        var cats = [Cat?]()
-                        for data in received {
-                            if let cat = CatViewModelController.parse(data as! [String : AnyObject]) {
-                                cats.append(cat)
+                        if currentPage == 0 {
+                            var cats = [Cat?]()
+                            for data in received {
+                                if let cat = CatViewModelController.parse(data as! [String : AnyObject]) {
+                                    cats.append(cat)
+                                }
                             }
+                            self.viewModels = CatViewModelController.initViewModels(cats)
+                            completionBlock(true, nil)
+                        } else {
+                            var cats = [Cat?]()
+                            for data in received {
+                                if let cat = CatViewModelController.parse(data as! [String : AnyObject]) {
+                                    cats.append(cat)
+                                }
+                            }
+                            for cat in CatViewModelController.initViewModels(cats) {
+                                self.viewModels.append(cat)
+                                
+                            }
+                            completionBlock(true, nil)
                         }
-                        self.viewModels = CatViewModelController.initViewModels(cats)
-                        completionBlock(true, nil)
                     }
                 }
                 else {
