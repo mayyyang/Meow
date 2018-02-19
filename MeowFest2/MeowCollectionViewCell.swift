@@ -14,12 +14,15 @@ class MeowCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var meowDescription: UILabel!
     
     func configure(_ catViewModel: CatViewModel) {
-        meowImageView.downloadImageFromUrl(catViewModel.image_url!, imageView: meowImageView)
-        title.text = catViewModel.title
-        timestamp.text = catViewModel.timestamp
-        meowDescription.text = catViewModel.description
+        if let imageUrl = catViewModel.image_url {
+            meowImageView.downloadImageFromUrl(imageUrl, imageView: meowImageView)
+            title.text = catViewModel.title
+            timestamp.text = catViewModel.timestamp
+            meowDescription.text = catViewModel.description
+        }
     }
 }
+
 private extension MeowCollectionViewCell {
     static let defaultBackgroundColor = UIColor.groupTableViewBackground
     

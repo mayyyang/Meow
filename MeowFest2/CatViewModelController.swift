@@ -12,87 +12,63 @@ class CatViewModelController {
     fileprivate var viewModels: [CatViewModel?] = []
     
     func getImages(_ currentPage: Int, _ completionBlock: @escaping (_ success: Bool, _ error: NSError?) -> ()) {
-        let url = NSURL(string: "https://chex-triplebyte.herokuapp.com/api/cats?page=\(currentPage)")
-        print(url)
-        let request = NSMutableURLRequest(url: url! as URL)
-        let task = URLSession.shared.dataTask(with: request as URLRequest){ data,response,error in
-            guard error == nil && data != nil else
-            {
-                print(error as Any)
-                completionBlock(false, error as NSError?)
-                return
-            }
-            let httpStatus = response as? HTTPURLResponse
-            if httpStatus!.statusCode == 200
-            {
-                if data?.count != 0
-                {
-                    if let received = try! JSONSerialization.jsonObject(with: data!, options:.allowFragments) as? [AnyObject] {
+        if let url = NSURL(string: "https://chex-triplebyte.herokuapp.com/api/cats?page=\(currentPage)") {
+            print(url)
+            let request = NSMutableURLRequest(url: url as URL)
+            let task = URLSession.shared.dataTask(with: request as URLRequest){ data,response,error in
+                guard error == nil, let data = data else {
+                    print(error as Any)
+                    completionBlock(false, error as NSError?)
+                    return
+                }
+                let httpStatus = response as? HTTPURLResponse
+                if httpStatus!.statusCode == 200 && data.count != 0 {
+                    if let received = try! JSONSerialization.jsonObject(with: data, options:.allowFragments) as? [AnyObject],
+                        let cats = self.constructCatArray(received: received) {
                         if currentPage == 0 {
-                            var cats = [Cat?]()
-                            for data in received {
-                                if let cat = CatViewModelController.parse(data as! [String : AnyObject]) {
-                                    cats.append(cat)
-                                }
-                            }
                             self.viewModels = CatViewModelController.initViewModels(cats)
                             completionBlock(true, nil)
                         } else {
-                            var cats = [Cat?]()
-                            for data in received {
-                                if let cat = CatViewModelController.parse(data as! [String : AnyObject]) {
-                                    cats.append(cat)
-                                }
-                            }
                             for cat in CatViewModelController.initViewModels(cats) {
                                 self.viewModels.append(cat)
-                                
                             }
                             completionBlock(true, nil)
                         }
+                    } else {
+                        print("No Data from URL")
+                        completionBlock(false, nil)
                     }
-                }
-                else {
-                    print("No Data from URL")
-                    completionBlock(false, nil)
+                } else {
+                    print("HTTP Status is 200. But error is: ",httpStatus!.statusCode)
+                    completionBlock(false, error! as NSError)
                 }
             }
-            else {
-                print("HTTP Status is 200. But error is: ",httpStatus!.statusCode)
-                completionBlock(false, error! as NSError)
+            task.resume()
+        }
+    }
+    
+    func constructCatArray(received: [AnyObject]) -> [Cat]? {
+        var cats = [Cat]()
+        for data in received {
+            if let data = data as? [String: AnyObject], let cat = CatViewModelController.parse(data) {
+                cats.append(cat)
             }
         }
-        task.resume()
+        return cats
     }
+    
     var viewModelsCount: Int {
         return viewModels.count
     }
+    
     func viewModel(at index: Int) -> CatViewModel? {
         guard index >= 0 && index < viewModelsCount else { return nil }
         return viewModels[index]
     }
-    func fetchMoreItems() {
-        print("fetching more items...")
-        //generating the next page of data
-        let newData = [AnyObject]()
-        let pageSize = 10
-        let currentPage = 0
-        let first = currentPage
-        let last = 10
-        let interval = 1
-        
-        let sequence = stride(from: first, to: last, by: interval)
-        
-        for element in sequence {
-            // do stuff
-            print(element)
-        }
-
-
-    }
 }
 
 private extension CatViewModelController {
+    
     static func parse(_ data: [String: AnyObject]) -> Cat? {
         let imageURL = data["image_url"] as? String ?? ""
         let title = data["title"] as? String ?? ""
@@ -100,6 +76,7 @@ private extension CatViewModelController {
         let timestamp = data["timestamp"] as? String ?? ""
         return Cat(title: title, timestamp: timestamp, image_url: imageURL, description: imageDescription)
     }
+    
     static func initViewModels(_ cats: [Cat?]) -> [CatViewModel?] {
         return cats.map { cat in
             if let cat = cat {
